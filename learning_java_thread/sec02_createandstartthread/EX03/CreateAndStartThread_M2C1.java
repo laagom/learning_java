@@ -1,9 +1,10 @@
-package sec02_createandstartthread.EX02;
+package sec02_createandstartthread.EX03;
 
 /*
- * #1 방법1. Thread 클래스 상속하여 클래스 생성 case2: 3개 쓰레드 생성
+ * #1 방법2. Runnable 인터페이스 상속하여 클래스 생성 case1: 2개 쓰레드 생성
  */
-class SMIFileThread extends Thread {
+
+class SMIFileRunnable implements Runnable {
     @Override
     public void run() {
         // #2 자막 번호 하나~다섯
@@ -26,9 +27,18 @@ class SMIFileThread extends Thread {
     }
 }
 
-class VideoFileThread extends Thread {
-    @Override
-    public void run() {
+public class CreateAndStartThread_M2C1 {
+    public static void main(String[] args) {
+        // SMIFileRunnable 객체 생성
+        Runnable smiFiRunnable = new SMIFileRunnable();
+
+        // 오류 : Runnable이라는 객체에는 상속받아 작성해야하는 run()함수는 존재하지만
+        // Thread를 시작하는 start()함수는 가지고 있지 않기 때문에 오류 발생
+        // smiFiRunnable.start();
+
+        Thread thread = new Thread(smiFiRunnable);
+        thread.start();
+
         // #1 비디오프레임 1~5
         int[] video_frames = { 1, 2, 3, 4, 5 };
 
@@ -41,23 +51,5 @@ class VideoFileThread extends Thread {
                 e.printStackTrace();
             }
         }
-    }
-}
-
-public class CreateAndStartThread_M1C2 {
-    /**
-     * MAIN Thread는 코드를 다 읽고 난 후 종료가 되고
-     * SMIFileThread와 VideoFileThread는 MAIN Thread가 종료되도 계속 진행된다.
-     * 
-     * @param args
-     */
-    public static void main(String[] args) {
-        // SMIFileThread 객체 생성 및 시작
-        Thread smiFileThread = new SMIFileThread();
-        smiFileThread.start();
-
-        // VideoFileThread 객체 생성 및 시작
-        Thread videoFileThread = new VideoFileThread();
-        videoFileThread.start();
     }
 }

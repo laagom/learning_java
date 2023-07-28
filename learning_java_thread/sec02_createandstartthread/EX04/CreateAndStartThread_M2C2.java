@@ -1,9 +1,10 @@
-package sec02_createandstartthread.EX02;
+package sec02_createandstartthread.EX04;
 
 /*
- * #1 방법1. Thread 클래스 상속하여 클래스 생성 case2: 3개 쓰레드 생성
+ * #1 방법2. Runnable 인터페이스 상속하여 클래스 생성 case2: 3개 쓰레드 생성
  */
-class SMIFileThread extends Thread {
+
+class SMIFileRunnable implements Runnable {
     @Override
     public void run() {
         // #2 자막 번호 하나~다섯
@@ -26,7 +27,7 @@ class SMIFileThread extends Thread {
     }
 }
 
-class VideoFileThread extends Thread {
+class VideoFileRunnable implements Runnable {
     @Override
     public void run() {
         // #1 비디오프레임 1~5
@@ -44,20 +45,21 @@ class VideoFileThread extends Thread {
     }
 }
 
-public class CreateAndStartThread_M1C2 {
-    /**
-     * MAIN Thread는 코드를 다 읽고 난 후 종료가 되고
-     * SMIFileThread와 VideoFileThread는 MAIN Thread가 종료되도 계속 진행된다.
-     * 
-     * @param args
-     */
+public class CreateAndStartThread_M2C2 {
     public static void main(String[] args) {
-        // SMIFileThread 객체 생성 및 시작
-        Thread smiFileThread = new SMIFileThread();
-        smiFileThread.start();
+        // SMIFileRunnable 객체 생성
+        Runnable smiFileRunnable = new SMIFileRunnable();
+        Thread smiThread = new Thread(smiFileRunnable);
+        smiThread.start();
 
-        // VideoFileThread 객체 생성 및 시작
-        Thread videoFileThread = new VideoFileThread();
-        videoFileThread.start();
+        // VideoFileRunnable 객체 생성
+        Runnable videoFileRunnable = new VideoFileRunnable();
+        Thread videoThread = new Thread(videoFileRunnable);
+        videoThread.start();
+
+        /**
+         * 이렇게 Runnable 객체를 만들어서 사용하는데
+         * 단 한번만 사용하고 다시 사용할 수 없기 때문에 코드가 낭비되게 된다.
+         */
     }
 }

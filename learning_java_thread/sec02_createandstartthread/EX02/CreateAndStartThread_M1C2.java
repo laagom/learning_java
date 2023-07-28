@@ -1,7 +1,7 @@
-package sec02_createandstartthread.EX01;
+package sec02_createandstartthread.EX02;
 
 /*
- * #1 방법1. Thread 클래스 상속하여 클래스 생성 case1: 2개 쓰레드 생성
+ * #1 방법1. Thread 클래스 상속하여 클래스 생성 case2: 3개 쓰레드 생성
  */
 class SMIFileThread extends Thread {
     @Override
@@ -26,13 +26,9 @@ class SMIFileThread extends Thread {
     }
 }
 
-public class CreateAndStartThread_M1C1 {
-    public static void main(String[] args) {
-
-        // SMIFileThread 객체 생성 및 시작
-        Thread smiFileThread = new SMIFileThread();
-        smiFileThread.start();
-
+class VideoFileThread extends Thread {
+    @Override
+    public void run() {
         // #1 비디오프레임 1~5
         int[] video_frames = { 1, 2, 3, 4, 5 };
 
@@ -45,5 +41,17 @@ public class CreateAndStartThread_M1C1 {
                 e.printStackTrace();
             }
         }
+    }
+}
+
+public class CreateAndStartThread_M1C2 {
+    public static void main(String[] args) {
+        // SMIFileThread 객체 생성 및 시작
+        Thread smiFileThread = new SMIFileThread();
+        smiFileThread.start();
+
+        // VideoFileThread 객체 생성 및 시작
+        Thread videoFileThread = new VideoFileThread();
+        videoFileThread.start();
     }
 }

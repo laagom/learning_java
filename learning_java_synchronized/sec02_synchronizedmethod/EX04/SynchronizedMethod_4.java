@@ -1,9 +1,10 @@
-package learning_java_synchronized.sec02_sychronizedmethod.EX03;
+package learning_java_synchronized.sec02_synchronizedmethod.EX04;
 
-public class SynchronizedMethod_3 {
+public class SynchronizedMethod_4 {
+
     /**
-     * 인스턴스 접근 자체에 lock이 걸리는지 테스트
-     * synchronized가 붙은 run 메서드와 붙지 않은 print 메서드를 동일한 객체로 각기 다른 쓰레드 동작 확인
+     * 인스턴스에 lock을 거는 synchronized 키워드는 synchroinzed가 적용된 메서드 끼리
+     * 일괄적으로 lock을 공유하는지 확인
      * 
      * @param args
      * @throws InterruptedException
@@ -22,21 +23,21 @@ public class SynchronizedMethod_3 {
         Thread.sleep(500);
         thread2.start();
 
-        // 결과 : 하나의 객체에 synchronized가 붙은 메서드가 존재한다 해도 객체 자체에 접근이 불가한 것은 아니다.
+        // 결과 : synchronized가 붙은 메서드는 일괄적으로 동기화 되어 하나의 객체에 접근이 불가하다.
         // thread1 lock
-        // thread2 hello
         // thread1 unlock
+        // thread2 hello
     }
 }
 
 class MyThread {
 
     /**
-     * 일반 print 메서드
+     * synchronized 붙은 print 메서드
      * 
      * @param name
      */
-    public void print(String name) {
+    public synchronized void print(String name) {
         System.out.println(name + " hello");
     }
 

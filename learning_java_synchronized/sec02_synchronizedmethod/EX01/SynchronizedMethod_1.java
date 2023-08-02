@@ -1,4 +1,4 @@
-package learning_java_synchronized.sec02_sychronizedmethod.EX01;
+package learning_java_synchronized.sec02_synchronizedmethod.EX01;
 
 public class SynchronizedMethod_1 {
     /**

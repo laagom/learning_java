@@ -1,12 +1,17 @@
 package learning_java_inheritance;
 
 public class Car {
+    static final String FRONT_LEFT_TIRE = "왼쪽 앞";
+    static final String FRONT_RIGHT_TIRE = "오른쪽 앞";
+    static final String BACK_LEFT_TIRE = "왼쪽 뒤";
+    static final String BACK_RIGHT_TIRE = "오른쪽 뒤";
+
     // 필드
     Tire[] tires = {
-            new Tire("왼쪽 앞", 6),
-            new Tire("오른쪽 앞", 2),
-            new Tire("왼쪽 뒤", 3),
-            new Tire("오른쪽 뒤", 4)
+            new Tire(FRONT_LEFT_TIRE, 6),
+            new Tire(FRONT_RIGHT_TIRE, 2),
+            new Tire(BACK_LEFT_TIRE, 3),
+            new Tire(BACK_RIGHT_TIRE, 4)
     };
 
     /**

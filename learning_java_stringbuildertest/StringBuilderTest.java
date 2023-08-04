@@ -14,6 +14,7 @@ public class StringBuilderTest {
         // stringBuilderThread.start();
 
         // # 익명 함수 테스트
+        // - String
         new Thread(() -> {
             String result = "";
             long start = System.currentTimeMillis();
@@ -27,6 +28,7 @@ public class StringBuilderTest {
 
         }).start();
 
+        // - StringBuilder
         new Thread(() -> {
             StringBuilder result = new StringBuilder();
             long start = System.currentTimeMillis();
@@ -39,9 +41,23 @@ public class StringBuilderTest {
             System.out.println("StringBuilder exec time : " + (end - start));
         }).start();
 
+        // - StringBuffer
+        new Thread(() -> {
+            StringBuffer result = new StringBuffer();
+            long start = System.currentTimeMillis();
+
+            for (long i = 0; i < 100000; i++) {
+                result.append("test");
+            }
+            long end = System.currentTimeMillis();
+
+            System.out.println("StringBuffer exec time : " + (end - start));
+        }).start();
+
         // 결과:
-        // StringBuilder exec time : 4
-        // String exec time : 2228
+        // StringBuffer exec time : 11
+        // StringBuilder exec time : 9
+        // String exec time : 2244
     }
 }
 
